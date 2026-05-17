@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCurdy Family Recipe Vault 🍳</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .recipe-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .recipe-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="bg-orange-50">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-8">
+            <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="text-5xl">🍳</div>
+                    <div>
+                        <h1 class="text-4xl font-bold tracking-tight">McCurdy Family</h1>
+                        <p class="text-orange-100 text-xl">Recipe Vault</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm opacity-90">Brought to you by Recipe Grok</p>
+                    <a href="https://github.com/wdmccurdy/family-recipes" target="_blank" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-2xl text-sm font-medium transition-colors">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="px-6 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-gray-800 mb-3">Our Family Dinner Adventures</h2>
+                <p class="text-xl text-gray-600 max-w-md mx-auto">Delicious recipes for legendary family nights. Let's cook up some memories! 🌮🍝🍣</p>
+            </div>
+
+            <!-- Recipes Grid -->
+            <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadRecipes() {
+            try {
+                const response = await fetch('https://api.github.com/repos/wdmccurdy/family-recipes/contents/recipes');
+                if (!response.ok) throw new Error('Failed to load');
+                
+                const files = await response.json();
+                const recipes = files.filter(file => file.name.endsWith('.md'));
+                
+                const grid = document.getElementById('recipes-grid');
+                grid.innerHTML = '';
+
+                if (recipes.length === 0) {
+                    grid.innerHTML = `<div class="col-span-full text-center py-12">
+                        <p class="text-2xl text-gray-400">No recipes yet...</p>
+                        <p class="text-gray-500 mt-2">Let's add some with Recipe Grok!</p>
+                    </div>`;
+                    return;
+                }
+
+                recipes.forEach(recipe => {
+                    const title = recipe.name
+                        .replace('.md', '')
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    
+                    const card = document.createElement('a');
+                    card.href = `https://github.com/wdmccurdy/family-recipes/blob/main/recipes/${recipe.name}`;
+                    card.target = '_blank';
+                    card.className = 'recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300';
+                    
+                    card.innerHTML = `
+                        <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
+                            ${getEmojiForRecipe(recipe.name)}
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-semibold text-2xl text-gray-800 mb-1">${title}</h3>
+                            <p class="text-orange-600 text-sm font-medium">Family Favorite</p>
+                            <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                                <i class="fas fa-clock"></i>
+                                <span>View Recipe</span>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            } catch (e) {
+                console.error(e);
+                document.getElementById('recipes-grid').innerHTML = `
+                    <div class="col-span-full text-center py-12 text-red-500">
+                        Oops! Couldn't load recipes right now.<br>
+                        <a href="https://github.com/wdmccurdy/family-recipes/tree/main/recipes" class="text-blue-500 underline">View recipes on GitHub</a>
+                    </div>`;
+            }
+        }
+
+        function getEmojiForRecipe(filename) {
+            const lower = filename.toLowerCase();
+            if (lower.includes('guinness') || lower.includes('pie')) return '🥧';
+            if (lower.includes('pollo') || lower.includes('peru')) return '🍗';
+            if (lower.includes('pasta') || lower.includes('italian')) return '🍝';
+            return '🍽️';
+        }
+
+        // Load recipes when page loads
+        window.onload = loadRecipes;
+    </script>
+</body>
+</html>
