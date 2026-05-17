@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe | McCurdy Family Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .markdown-content ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .markdown-content ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .ingredient-item {
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-orange-50">
+    <div class="max-w-4xl mx-auto">
+        <!-- Navbar -->
+        <nav class="bg-white shadow-sm border-b sticky top-0 z-50">
+            <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-3 text-orange-600 hover:text-orange-700 transition-colors">
+                    <i class="fas fa-arrow-left"></i>
+                    <span class="font-medium">Back to All Recipes</span>
+                </a>
+                <div class="flex items-center gap-3">
+                    <div class="text-3xl">🍳</div>
+                    <h1 class="text-2xl font-semibold text-gray-800">McCurdy Family Recipe Vault</h1>
+                </div>
+            </div>
+        </nav>
+
+        <div id="recipe-content" class="px-6 py-8">
+            <!-- Loaded dynamically -->
+        </div>
+    </div>
+
+    <script>
+        async function loadRecipe() {
+            const urlParams = new URLSearchParams(window.location.search);
+            let filename = urlParams.get('file');
+
+            if (!filename) {
+                document.getElementById('recipe-content').innerHTML = `
+                    <div class="text-center py-20">
+                        <p class="text-2xl text-red-500">No recipe selected 😕</p>
+                        <a href="index.html" class="mt-6 inline-block text-orange-600 underline">← Back to recipes</a>
+                    </div>`;
+                return;
+            }
+
+            try {
+                const rawUrl = `https://raw.githubusercontent.com/wdmccurdy/family-recipes/main/recipes/${filename}`;
+                const response = await fetch(rawUrl);
+                if (!response.ok) throw new Error('Recipe not found');
+                
+                const markdown = await response.text();
+
+                // Parse frontmatter-ish title if needed, but mostly use marked
+                const rendered = marked.parse(markdown);
+
+                const contentDiv = document.getElementById('recipe-content');
+                contentDiv.innerHTML = `
+                    <div class="prose prose-orange max-w-none markdown-content">
+                        ${rendered}
+                    </div>
+
+                    <div class="mt-12 flex justify-center">
+                        <a href="index.html" 
+                           class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-3xl font-medium text-lg transition-all">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to All Recipes
+                        </a>
+                    </div>
+                `;
+
+                // Make ingredients and instructions look extra nice
+                setTimeout(() => {
+                    // You can add extra JS enhancements here later
+                }, 100);
+
+            } catch (e) {
+                console.error(e);
+                document.getElementById('recipe-content').innerHTML = `
+                    <div class="text-center py-20 text-red-500">
+                        <p class="text-xl">Could not load recipe. It might still be cooking... 🍳</p>
+                        <a href="index.html" class="text-orange-600 underline mt-4 inline-block">Back home</a>
+                    </div>`;
+            }
+        }
+
+        window.onload = loadRecipe;
+    </script>
+</body>
+</html>
