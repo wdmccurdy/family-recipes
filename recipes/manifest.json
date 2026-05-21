@@ -1,0 +1,28 @@
+{
+  "recipes": [
+    {
+      "file": "brazil-moqueca.md",
+      "slug": "brazil-moqueca",
+      "title": "Brazil Theme Night Menu (Cheese Bread + Mild Moqueca Stew + Brigadeiros)",
+      "country": "brazil"
+    },
+    {
+      "file": "germany-guiness-pie.md",
+      "slug": "germany-guiness-pie",
+      "title": "Irish Family Dinner Night",
+      "country": "germany"
+    },
+    {
+      "file": "japan-okonomiyaki.md",
+      "slug": "japan-okonomiyaki",
+      "title": "Okonomiyaki Savory Cabbage Pancakes – Japanese Night",
+      "country": "japan"
+    },
+    {
+      "file": "peru-pollo-a-la-brasa.md",
+      "slug": "peru-pollo-a-la-brasa",
+      "title": "Peru Family Dinner Night",
+      "country": "peru"
+    }
+  ]
+}

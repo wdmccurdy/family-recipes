@@ -1,0 +1,24 @@
+name: Update recipe index
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'recipes/*.md'
+      - 'scripts/generate-manifest.mjs'
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/generate-manifest.mjs
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'Update recipe manifest'
+          file_pattern: recipes/manifest.json
