@@ -33,64 +33,72 @@
         <div class="px-6 py-12">
             <div class="text-center mb-12">
                 <h2 class="text-5xl font-bold text-gray-800 mb-3">Our Family Dinner Adventures</h2>
-                <p class="text-xl text-gray-600 max-w-lg mx-auto">Add a markdown file in <code class="text-orange-700 bg-orange-100 px-2 py-0.5 rounded">recipes/</code> and it shows up here automatically.</p>
+                <p class="text-xl text-gray-600 max-w-lg mx-auto">Add a markdown file in <code class="text-orange-700 bg-orange-100 px-2 py-0.5 rounded">recipes/</code>, run the build, and it shows up here.</p>
             </div>
 
-            <div id="recipes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <p class="col-span-full text-center text-gray-500 py-12">Loading recipes…</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <a href="./brazil-moqueca/"
+                   class="recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300">
+                    <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
+                        🥘
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-gray-800 mb-1">Brazil Theme Night Menu (Cheese Bread + Mild Moqueca Stew + Brigadeiros)</h3>
+                        <p class="text-orange-600 text-sm font-medium capitalize">brazil night</p>
+                        <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                            <i class="fas fa-book-open"></i>
+                            <span>View recipe</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./germany-guiness-pie/"
+                   class="recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300">
+                    <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
+                        🥧
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-gray-800 mb-1">Irish Family Dinner Night</h3>
+                        <p class="text-orange-600 text-sm font-medium capitalize">germany night</p>
+                        <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                            <i class="fas fa-book-open"></i>
+                            <span>View recipe</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./japan-okonomiyaki/"
+                   class="recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300">
+                    <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
+                        🥞
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-gray-800 mb-1">Okonomiyaki Savory Cabbage Pancakes – Japanese Night</h3>
+                        <p class="text-orange-600 text-sm font-medium capitalize">japan night</p>
+                        <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                            <i class="fas fa-book-open"></i>
+                            <span>View recipe</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./peru-pollo-a-la-brasa/"
+                   class="recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300">
+                    <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
+                        🍗
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-2xl text-gray-800 mb-1">Peru Family Dinner Night</h3>
+                        <p class="text-orange-600 text-sm font-medium capitalize">peru night</p>
+                        <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                            <i class="fas fa-book-open"></i>
+                            <span>View recipe</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-
-    <script type="module">
-        import { getEmoji, loadManifest, recipePageUrl } from './js/site.js';
-
-        async function loadRecipes() {
-            const grid = document.getElementById('recipes-grid');
-
-            try {
-                const recipes = await loadManifest();
-                grid.innerHTML = '';
-
-                if (recipes.length === 0) {
-                    grid.innerHTML = `
-                        <div class="col-span-full text-center py-12">
-                            <p class="text-2xl text-gray-400">No recipes yet</p>
-                            <p class="text-gray-500 mt-2">Add a <code>.md</code> file in the <code>recipes/</code> folder.</p>
-                        </div>`;
-                    return;
-                }
-
-                for (const recipe of recipes) {
-                    const card = document.createElement('a');
-                    card.href = recipePageUrl(recipe.slug);
-                    card.className = 'recipe-card block bg-white rounded-3xl shadow-lg overflow-hidden border border-orange-100 hover:border-orange-300';
-
-                    card.innerHTML = `
-                        <div class="h-48 bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center text-7xl">
-                            ${getEmoji(recipe.slug)}
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-semibold text-2xl text-gray-800 mb-1">${recipe.title}</h3>
-                            <p class="text-orange-600 text-sm font-medium capitalize">${recipe.country} night</p>
-                            <div class="mt-6 flex items-center gap-2 text-xs text-gray-500">
-                                <i class="fas fa-book-open"></i>
-                                <span>View recipe</span>
-                            </div>
-                        </div>`;
-                    grid.appendChild(card);
-                }
-            } catch (e) {
-                console.error(e);
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-red-500">
-                        Could not load recipes.<br>
-                        <span class="text-gray-600 text-sm mt-2 block">If you just added a recipe, push to GitHub and wait a minute for the index to update.</span>
-                    </div>`;
-            }
-        }
-
-        loadRecipes();
-    </script>
 </body>
 </html>

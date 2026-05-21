@@ -1,14 +1,15 @@
-name: Update recipe index
+name: Build site
 
 on:
   push:
     branches: [main]
     paths:
       - 'recipes/*.md'
-      - 'scripts/generate-manifest.mjs'
+      - 'scripts/**'
+      - 'index.template.html'
 
 jobs:
-  manifest:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -17,8 +18,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node scripts/generate-manifest.mjs
+      - run: npm ci
+      - run: npm run build
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'Update recipe manifest'
-          file_pattern: recipes/manifest.json
+          commit_message: 'Build recipe pages from markdown'
+          file_pattern: |
+            index.html
+            recipes/manifest.json
+            */index.html

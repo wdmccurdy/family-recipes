@@ -10,22 +10,23 @@ Family dinner night recipes, hosted on GitHub Pages.
 2. Start the file with a `#` heading (that becomes the title on the site)
 3. Commit and push to `main`
 
-The site picks up new recipes automatically. A GitHub Action updates `recipes/manifest.json` so the homepage lists every `.md` file. Each recipe gets its own page at `recipe.html?r=your-file-name` (without `.md`).
+The site picks up new recipes automatically. A GitHub Action runs `npm run build` to generate the homepage and a webpage for each recipe at `https://wdmccurdy.github.io/family-recipes/your-file-name/` (without `.md`).
 
 ### Filename tips
 
 - Use lowercase and hyphens: `country-dish-name.md`
 - The first word is used for the country label on cards (e.g. `peru-pollo-a-la-brasa.md` → “peru night”)
 
-### Update the index locally (optional)
+### Build locally (optional)
 
 ```bash
-node scripts/generate-manifest.mjs
+npm install
+npm run build
 ```
 
 ## Current recipes
 
-- [Peru — Pollo a la Brasa](recipes/peru-pollo-a-la-brasa.md)
-- [Japan — Okonomiyaki](recipes/japan-okonomiyaki.md)
-- [Brazil — Moqueca](recipes/brazil-moqueca.md)
-- [Ireland — Guinness Pie](recipes/germany-guiness-pie.md)
+- [Peru — Pollo a la Brasa](https://wdmccurdy.github.io/family-recipes/peru-pollo-a-la-brasa/)
+- [Japan — Okonomiyaki](https://wdmccurdy.github.io/family-recipes/japan-okonomiyaki/)
+- [Brazil — Moqueca](https://wdmccurdy.github.io/family-recipes/brazil-moqueca/)
+- [Ireland — Guinness Pie](https://wdmccurdy.github.io/family-recipes/germany-guiness-pie/)

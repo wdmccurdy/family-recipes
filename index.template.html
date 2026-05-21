@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCurdy Family Recipe Vault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .recipe-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .recipe-card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="bg-orange-50">
+    <div class="max-w-6xl mx-auto">
+        <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-8">
+            <div class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="text-5xl">🍳</div>
+                    <div>
+                        <h1 class="text-4xl font-bold tracking-tight">McCurdy Family</h1>
+                        <p class="text-orange-100 text-xl">Recipe Vault</p>
+                    </div>
+                </div>
+                <a href="https://github.com/wdmccurdy/family-recipes" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-2xl text-sm font-medium transition-colors">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
+            </div>
+        </header>
+
+        <div class="px-6 py-12">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-bold text-gray-800 mb-3">Our Family Dinner Adventures</h2>
+                <p class="text-xl text-gray-600 max-w-lg mx-auto">Add a markdown file in <code class="text-orange-700 bg-orange-100 px-2 py-0.5 rounded">recipes/</code>, run the build, and it shows up here.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- RECIPE_CARDS -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

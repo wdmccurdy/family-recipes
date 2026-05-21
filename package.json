@@ -1,0 +1,11 @@
+{
+  "name": "family-recipes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-site.mjs"
+  },
+  "devDependencies": {
+    "marked": "^15.0.7"
+  }
+}
