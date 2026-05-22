@@ -19,6 +19,7 @@ const RECIPE_EMOJI = {
   greece: '🫒',
   thailand: '🍜',
   swiss: '🧀',
+  iran: '🍚',
 };
 
 function getEmoji(slug) {
