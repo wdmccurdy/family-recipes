@@ -7,9 +7,9 @@
       "country": "brazil"
     },
     {
-      "file": "germany-guiness-pie.md",
-      "slug": "germany-guiness-pie",
-      "title": "Irish Family Dinner Night",
+      "file": "germany-schnitzel.md",
+      "slug": "germany-schnitzel",
+      "title": "German Family Dinner Night",
       "country": "germany"
     },
     {
@@ -19,16 +19,34 @@
       "country": "iran"
     },
     {
+      "file": "ireland-guinness-pie.md",
+      "slug": "ireland-guinness-pie",
+      "title": "Irish Family Dinner Night",
+      "country": "ireland"
+    },
+    {
       "file": "japan-okonomiyaki.md",
       "slug": "japan-okonomiyaki",
       "title": "Okonomiyaki Savory Cabbage Pancakes – Japanese Night",
       "country": "japan"
     },
     {
+      "file": "morocco-chicken-apricot.md",
+      "slug": "morocco-chicken-apricot",
+      "title": "Moroccan Family Dinner Night",
+      "country": "morocco"
+    },
+    {
       "file": "peru-pollo-a-la-brasa.md",
       "slug": "peru-pollo-a-la-brasa",
       "title": "Peru Family Dinner Night",
       "country": "peru"
+    },
+    {
+      "file": "spain-tortilla.md",
+      "slug": "spain-tortilla",
+      "title": "Spanish Family Dinner Night",
+      "country": "spain"
     },
     {
       "file": "swiss-zuercher-geschnetzeltes.md",

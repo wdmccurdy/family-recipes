@@ -29,4 +29,7 @@ npm run build
 - [Peru — Pollo a la Brasa](https://wdmccurdy.github.io/family-recipes/peru-pollo-a-la-brasa/)
 - [Japan — Okonomiyaki](https://wdmccurdy.github.io/family-recipes/japan-okonomiyaki/)
 - [Brazil — Moqueca](https://wdmccurdy.github.io/family-recipes/brazil-moqueca/)
-- [Ireland — Guinness Pie](https://wdmccurdy.github.io/family-recipes/germany-guiness-pie/)
+- [Ireland — Guinness Pie](https://wdmccurdy.github.io/family-recipes/ireland-guinness-pie/)
+- [Germany — Schnitzel Night](https://wdmccurdy.github.io/family-recipes/germany-schnitzel/) *(placeholder)*
+- [Spain — Tortilla Night](https://wdmccurdy.github.io/family-recipes/spain-tortilla/) *(placeholder)*
+- [Morocco — Chicken & Apricot](https://wdmccurdy.github.io/family-recipes/morocco-chicken-apricot/) *(placeholder)*
