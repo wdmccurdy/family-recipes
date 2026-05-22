@@ -23,6 +23,12 @@
       "slug": "peru-pollo-a-la-brasa",
       "title": "Peru Family Dinner Night",
       "country": "peru"
+    },
+    {
+      "file": "swiss-zuercher-geschnetzeltes.md",
+      "slug": "swiss-zuercher-geschnetzeltes",
+      "title": "Swiss Family Dinner Night",
+      "country": "swiss"
     }
   ]
 }
