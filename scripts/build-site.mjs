@@ -18,6 +18,7 @@ const RECIPE_EMOJI = {
   china: '🥡',
   greece: '🫒',
   thailand: '🍜',
+  swiss: '🧀',
 };
 
 function getEmoji(slug) {
